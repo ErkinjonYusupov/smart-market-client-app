@@ -1,3 +1,4 @@
+import 'package:client_mobile_app/components/my_button.dart';
 import 'package:client_mobile_app/exports.dart';
 
 class LoginPage extends StatefulWidget {
@@ -10,66 +11,92 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   LoginController controller = Get.put(LoginController());
   var maskFormatter = MaskTextInputFormatter(
-      mask: '## ### ## ##',
+      mask: '+998 ## ### ## ##',
       filter: {"#": RegExp(r'[+, 0-9]')},
       type: MaskAutoCompletionType.lazy);
-  bool showPasword = false;
+  bool showPasword = true;
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(builder: (controller) {
       return Scaffold(
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            children: [
-              const Spacer(),
-              const Text("Up"),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(12)),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 1),
-                      child: Text(
-                        "+998",
-                        style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.w600),
-                      ),
+          child: Form(
+            key: formKey,
+            child: Column(
+              children: [
+                const Spacer(),
+                const Text("Up"),
+                TextFormField(
+                  validator: (value) {
+                    return value!.trim().isEmpty
+                        ? 'Telefon raqamingizni kiriting'
+                        : value.trim().length < 17
+                            ? "Telefon raqamni to'liq kiriting"
+                            : null;
+                  },
+                  
+                  keyboardType: TextInputType.phone,
+                  controller: controller.phone,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w600),
+                  inputFormatters: [maskFormatter],
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.phone_outlined),
+                    hintText: "+998",
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
-                    const SizedBox(width: 5),
-                    Expanded(
-                      child: TextFormField(
-                        keyboardType: TextInputType.phone,
-                        controller: controller.phone,
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w600),
-                        inputFormatters: [maskFormatter],
-                        decoration: const InputDecoration(
-                             border: InputBorder.none),
-                      ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
                     ),
-                  ],
+                    errorBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey),
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(12)),
-                child: TextFormField(
+                const SizedBox(height: 16),
+                TextFormField(
+                  validator: (value) {
+                    return value!.trim().isEmpty
+                        ? 'Parolni kiriting'
+                        : value.trim().length < 8
+                            ? "Parol 8 ta elemantdan tashkil topgan bo'lsishi shart"
+                            : null;
+                  },
                   obscuringCharacter: '●',
                   obscureText: showPasword,
                   controller: controller.password,
                   style: const TextStyle(
                       fontSize: 18, fontWeight: FontWeight.w600),
                   decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                      focusedErrorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                      errorBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.red),
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(16)),
+                      ),
+                    prefixIcon: const Icon(Icons.lock_outline),
+
                       suffixIcon: IconButton(
                         padding: EdgeInsets.zero,
                         icon: Icon(
@@ -86,9 +113,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       border: InputBorder.none),
                 ),
-              ),
-              const Spacer(),
-            ],
+                const SizedBox(height: 16),
+                MyTextButton(
+                    buttonName: 'Kirish',
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {}
+                    }),
+                const Spacer(),
+              ],
+            ),
           ),
         ),
       );
