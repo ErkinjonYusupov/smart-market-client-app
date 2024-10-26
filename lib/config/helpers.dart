@@ -1,10 +1,11 @@
- import 'package:string_mask/string_mask.dart';
 
-class Mask{
-   var formatter = StringMask('00 000 00 00');
-   phone(String val){
+import 'package:string_mask/string_mask.dart';
+
+class Mask {
+  var formatter = StringMask('00 000 00 00');
+  phone(String val) {
     return formatter.apply(val.replaceAll('+', ''));
-   }
+  }
 }
 
 String formatNumber(num number) {
@@ -30,4 +31,19 @@ String formatNumber(num number) {
   }
 
   return result;
+}
+
+String formatDateTime(String dateTimeString) {
+  DateTime dateTime = DateTime.parse(dateTimeString);
+
+  // Oy nomlarini qo‘lda ro'yxat qilib tuzish
+  const List<String> monthNames = [
+    'Yan', 'Fev', 'Mar', 'Apr', 'May', 'Iyun',
+    'Iyul', 'Avg', 'Sen', 'Okt', 'Noy', 'Dek'
+  ];
+
+  // Kutilgan formatga o‘girish
+  String formattedDate = "${monthNames[dateTime.month - 1]} ${dateTime.day} ${dateTime.year} ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
+
+  return formattedDate;
 }

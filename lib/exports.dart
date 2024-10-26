@@ -9,6 +9,20 @@ export 'package:client_mobile_app/components/my_button.dart';
 export 'package:client_mobile_app/components/error_dialog.dart';
 export 'package:get_storage/get_storage.dart';
 export 'package:client_mobile_app/home/home_controller.dart';
+export 'package:client_mobile_app/config/colors.dart';
+export 'package:client_mobile_app/config/helpers.dart';
+export 'package:client_mobile_app/home/models/user.dart';
+export 'package:client_mobile_app/home/all_transactions.dart';
+export 'package:client_mobile_app/components/home_promotions_button.dart';
+export 'package:client_mobile_app/config/database.dart';
+export 'package:client_mobile_app/config/my_dio.dart';
+export 'package:client_mobile_app/home/models/pagination.dart';
+export 'package:client_mobile_app/home/models/product_model.dart';
+export 'package:client_mobile_app/home/products.dart';
+
+
+
+
 
 
 

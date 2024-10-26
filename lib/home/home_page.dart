@@ -1,5 +1,3 @@
-import 'package:client_mobile_app/components/home_promotions_button.dart';
-import 'package:client_mobile_app/config/colors.dart';
 import 'package:client_mobile_app/exports.dart';
 import 'package:client_mobile_app/home/controller/card.dart';
 
@@ -40,20 +38,34 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: AppColors.gray7,
             body: Container(
               constraints: const BoxConstraints(maxWidth: 500),
-              child: Column(
-                children: [
-                  controller.user == null
-                      ? const SizedBox()
-                      : CardWidget(
-                          user: controller.user, summa: controller.totolSumma),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: HomePromotionsButton(
-                      onTap: () {},
+              child: controller.user == null
+                  ? const SizedBox()
+                  : Column(
+                      children: [
+                        CardWidget(
+                            user: controller.user,
+                            summa: controller.totolSumma),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: HomePromotionsButton(
+                            onTap: () {
+                              Get.to(() => const AllTransactions());
+                            },
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: HomePromotionsButton(
+                            onTap: () {
+                              controller.pagination.current_page = 1;
+                              controller.products=[];
+                              controller.fetchProductsFromDb();
+                              Get.to(() => const Products());
+                            },
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
             ));
       },
     );
