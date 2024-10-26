@@ -1,23 +1,32 @@
-import 'package:client_mobile_app/config/colors.dart';
-import 'package:client_mobile_app/config/images.dart';
 import 'package:client_mobile_app/exports.dart';
 
-
 class HomePromotionsButton extends StatelessWidget {
-  const HomePromotionsButton({super.key, required this.onTap});
+  const HomePromotionsButton(
+      {super.key,
+      required this.onTap,
+      this.title="Mening xaridlarim",
+      this.subTitle="Bonus va xaridlar harakatlarini ko'rish",
+      this.color = const Color(0xff9D81FF),
+      this.image = AppImages.gift});
   final Function()? onTap;
+
+  final Color color;
+  final String image;
+  final String title;
+  final String subTitle;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(bottom: 16),
         decoration: BoxDecoration(
-            color: AppColors.primary, borderRadius: BorderRadius.circular(10)),
+            color: color, borderRadius: BorderRadius.circular(10)),
         child: Row(
           children: [
             Image.asset(
-              AppImages.gift,
+              image,
               width: 80,
               fit: BoxFit.cover,
             ),
@@ -27,16 +36,16 @@ class HomePromotionsButton extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Mening haridlarim".tr,
+                  title,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 18,
-                      color: Colors.white),
+                      color: Colors.white)
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  "Bonus va haridlar harakatlarini ko'rish".tr,
+                  subTitle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                   style: const TextStyle(color: Colors.white),

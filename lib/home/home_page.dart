@@ -56,6 +56,10 @@ class _HomePageState extends State<HomePage> {
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: HomePromotionsButton(
+                            color: Colors.green.shade600,
+                            image: AppImages.product,
+                            title: "Mahsulotlar",
+                            subTitle: "Mahsulotlar narxlari haqida bilib boring",
                             onTap: () {
                               controller.pagination.current_page = 1;
                               controller.products=[];

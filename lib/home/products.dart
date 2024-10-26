@@ -63,8 +63,12 @@ class _ProductsState extends State<Products> {
                     return ListAnimation(
                       index: index,
                       child: ListTile(
+                        dense: true,
+                        contentPadding: const EdgeInsets.all(2),
                         textColor: Colors.white,
                         title: Text(item.title),
+                        subtitle: Text(item.barcode, style: const TextStyle(color: Colors.grey, fontSize: 12),),
+                        trailing: Text(formatNumber(item.price), style: const TextStyle(fontWeight: FontWeight.w700),),
                       ),
                     );
                   }),

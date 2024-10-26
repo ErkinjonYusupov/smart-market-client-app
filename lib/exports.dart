@@ -19,6 +19,8 @@ export 'package:client_mobile_app/config/my_dio.dart';
 export 'package:client_mobile_app/home/models/pagination.dart';
 export 'package:client_mobile_app/home/models/product_model.dart';
 export 'package:client_mobile_app/home/products.dart';
+export 'package:client_mobile_app/config/images.dart';
+
 
 
 

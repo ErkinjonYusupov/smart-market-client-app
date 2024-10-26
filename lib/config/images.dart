@@ -3,6 +3,7 @@ class AppImages{
   static const String todo = 'assets/images/Todo.png';
   static const String calendar = 'assets/images/Calendar.png';
   static const String gift = 'assets/images/gift.png';
+  static const String product = 'assets/images/product.png';
 
 
 }
