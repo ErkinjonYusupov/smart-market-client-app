@@ -4,6 +4,7 @@ class MyTextButton extends StatelessWidget {
   const MyTextButton(
       {super.key,
       required this.buttonName,
+      this.loading = false,
       required this.onPressed,
       this.color = const Color(0xff9D81FF),
       this.textColor = const Color(0xffffffff)});
@@ -11,6 +12,7 @@ class MyTextButton extends StatelessWidget {
   final Function() onPressed;
   final Color? color;
   final Color? textColor;
+  final bool loading;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,8 @@ class MyTextButton extends StatelessWidget {
       height: 50,
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: onPressed,
+        onPressed: loading ? null : onPressed,
         style: ButtonStyle(
-
           shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
@@ -36,10 +37,21 @@ class MyTextButton extends StatelessWidget {
             },
           ),
         ),
-        child: Text(
-          buttonName,
-          style: TextStyle(color: textColor, fontWeight: FontWeight.w700, fontSize: 18),
-        ),
+        child: loading
+            ? const SizedBox(
+                width: 30,
+                height: 30,
+                child: CircularProgressIndicator(
+                  color: Colors.white,
+                  strokeWidth: 2,
+                ))
+            : Text(
+                buttonName,
+                style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18),
+              ),
       ),
     );
   }

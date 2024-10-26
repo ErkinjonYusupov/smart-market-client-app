@@ -5,4 +5,10 @@ export 'package:client_mobile_app/login/login_controller.dart';
 export 'package:get/get_state_manager/get_state_manager.dart';
 export 'package:client_mobile_app/login/login_page.dart';
 export 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+export 'package:client_mobile_app/components/my_button.dart';
+export 'package:client_mobile_app/components/error_dialog.dart';
+export 'package:get_storage/get_storage.dart';
+export 'package:client_mobile_app/home/home_controller.dart';
+
+
 

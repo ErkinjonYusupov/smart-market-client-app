@@ -1,4 +1,3 @@
-import 'package:client_mobile_app/components/my_button.dart';
 import 'package:client_mobile_app/exports.dart';
 
 class LoginPage extends StatefulWidget {
@@ -36,8 +35,7 @@ class _LoginPageState extends State<LoginPage> {
                         : value.trim().length < 17
                             ? "Telefon raqamni to'liq kiriting"
                             : null;
-                  },
-                  
+                  },                 
                   keyboardType: TextInputType.phone,
                   controller: controller.phone,
                   style: const TextStyle(
@@ -116,8 +114,11 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 16),
                 MyTextButton(
                     buttonName: 'Kirish',
+                    loading: controller.loading,
                     onPressed: () {
-                      if (formKey.currentState!.validate()) {}
+                      if (formKey.currentState!.validate()) {
+                        controller.login();
+                      }
                     }),
                 const Spacer(),
               ],
